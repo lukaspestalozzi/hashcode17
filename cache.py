@@ -30,8 +30,8 @@ for i in range(0, e):
     # create cache latencies list
     cachelatencies = []
     for j in range(0, k):
-        c, lc = list(map(int, line.split(" ")))
-        cachelatencies.append(CacheLatency(c, lc))
+        cid, lc = list(map(int, line.split(" ")))
+        cachelatencies.append(CacheLatency(cid, lc))
         line = infile.readline()
 
     # Add endpoint
