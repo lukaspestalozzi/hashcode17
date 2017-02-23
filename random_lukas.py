@@ -1,7 +1,10 @@
 from objects import *
 from create_output import *
+import random
 
 def solve(caches, endpoints, requests, videos):
+    # shuffle requests to acheive different solutions every time
+    random.shuffle(requests)
 
     for r in requests:
         # find cache that has enough space left

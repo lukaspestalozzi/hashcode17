@@ -3,7 +3,7 @@ from collections import namedtuple
 Video = namedtuple("Video", ["vid", "size"])
 
 
-class Cache(namedtuple("Cache", ["cid", "capacity", "videos"]) ):
+class Cache(namedtuple("Cache", ["cid", "capacity", "videos"]) ): # videos is an empty list at the beginning
 
     def __str__(self):
         s = str(self.cid)
