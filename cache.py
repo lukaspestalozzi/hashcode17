@@ -45,6 +45,7 @@ for i in range(0, r):
     req = Request(videos[rv], rn, re)
     endpoints[re].requests.append(req)
     requests.append(req)
+    line = infile.readline()
 
 # create list of caches
 caches = []
