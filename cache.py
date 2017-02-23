@@ -42,7 +42,7 @@ line = infile.readline()
 requests = []
 for i in range(0, r):
     rv, re, rn = list(map(int, line.split(" ")))
-    req = Request(rv, rn, re)
+    req = Request(videos[rv], rn, re)
     endpoints[re].requests.append(req)
     requests.append(req)
 
