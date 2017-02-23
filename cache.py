@@ -1,7 +1,6 @@
 from sys import stdin
 from objects import *
 from random_lukas import *
-from greedyCarlos import *
 
 '''
     Use 'cat input.in | python thisscript.py' to execute
@@ -39,7 +38,6 @@ for i in range(0, e):
     endpoints.append(EndPoint(i, l, cachelatencies, []))
 
 # advance to request descriptions
-line = infile.readline()
 requests = []
 for i in range(0, r):
     rv, re, rn = list(map(int, line.split(" ")))
@@ -51,7 +49,7 @@ for i in range(0, r):
 # create list of caches
 caches = []
 for i in range(0, c):
-    caches.append(Cache(i, x, []))
+    caches.append(Cache(i, x, set()))
 
 
 solve(caches, endpoints, requests, videos)
