@@ -8,13 +8,21 @@ def solve(caches, endpoints, requests, videos):
 
     for r in requests:
         # find cache that has enough space left
-        found = false
+        found = False
         for c in caches:
-            if c.capacity > r.video.size:
-                c.videos.append(r.video)
-                c.capacity = c.capacity - r.video.size
-                found = true
+            if remaining_capacity(c) >= r.video.size and r.video.vid not in [v.vid for v in c.videos]:
+                c.videos.add(r.video)
+                found = True
                 break
         # done putting video in cache
     # done putting all requests
+    create_output(caches)
+
     return caches
+
+def remaining_capacity(cache):
+    tot_capacity = cache.capacity
+    s = 0
+    for v in cache.videos:
+        s += v.size
+    return tot_capacity - s
