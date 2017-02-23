@@ -15,4 +15,4 @@ CacheLatency = namedtuple("CacheLatency", ["cid", "latency"])
 
 Request = namedtuple("Request", ["video", "amount", "eid"])
 
-EndPoint = namedtuple("EndPoint", ["eid", "latence_to_dc", "cache_latencies", "requests"])
+EndPoint = namedtuple("EndPoint", ["eid", "latence_to_dc", "cache_latencies", "cache_latencies_dict", "requests"])
