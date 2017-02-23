@@ -6,14 +6,14 @@ DEBUG = False
 
 def solve(caches, endpoints, requests, videos):
     # shuffle requests to acheive different solutions every time
-    # random.shuffle(requests)
+    random.shuffle(requests)
     if DEBUG:
         print("chaches:", len(caches))
         print("endpoints:", len(endpoints))
         print("requests:", len(requests))
         print("videos:", len(videos))
 
-    requests = sorted(requests, key=lambda x: x.amount)
+    requests = sorted(requests, key=lambda x: x.amount, reverse=True)
 
     ep_to_caches = {}
     for r in requests:
