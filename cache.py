@@ -29,13 +29,15 @@ for i in range(0, e):
 
     # create cache latencies list
     cachelatencies = []
+    cachelatencies_dict = {}
     for j in range(0, k):
         cid, lc = list(map(int, line.split(" ")))
         cachelatencies.append(CacheLatency(cid, lc))
+        cachelatencies_dict = {cid: CacheLatency(cid, lc)}
         line = infile.readline()
 
     # Add endpoint
-    endpoints.append(EndPoint(i, l, cachelatencies, []))
+    endpoints.append(EndPoint(i, l, cachelatencies, cachelatencies_dict, []))
 
 # advance to request descriptions
 requests = []
