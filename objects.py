@@ -2,10 +2,17 @@ from collections import namedtuple
 
 Video = namedtuple("Video", ["vid", "size"])
 
-Cache = namedtuple("Cache", ["cid", "capacity", "videos"])
+
+class Cache(namedtuple("Cache", ["cid", "capacity", "videos"]) ):
+
+    def __str__(self):
+        s = str(self.cid)
+        for v in self.videos:
+            s += " "+str(v.vid)
+        return s
 
 CacheLatency = namedtuple("CacheLatency", ["cid", "latency"])
 
 Request = namedtuple("Request", ["video", "amount", "eid"])
 
-EndPoint = namedtuple("EndPoint", ["eid", "latence_to_dc", "cache_latencies", "caches", "requests"])
+EndPoint = namedtuple("EndPoint", ["eid", "latence_to_dc", "cache_latencies", "requests"])
