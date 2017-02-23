@@ -38,11 +38,12 @@ def getTotalLatencySavings(caches, videos, endpoints):
             result += (endpoint.latence_to_dc - getLatency(request.video,endpoint.eid, caches, videos, endpoints)) * request.amount
     return result
 
-def solve(caches, endpoints, requests, videos):
+def solveC(caches, endpoints, requests, videos):
     """Comment"""
     #print(getLatency(0,0, caches, videos, endpoints))
     print("The latency savings are", getTotalLatencySavings(caches, videos, endpoints))
     print("Trying to move videos to cache...")
+    print("We have", len(caches),"cache servers")
     #Best would be to sort the request before
     for request in requests:
         if(getLowestLatency(request.video,request.eid, caches, videos, endpoints) != getLatency(request.video,request.eid, caches, videos, endpoints)):
@@ -51,6 +52,7 @@ def solve(caches, endpoints, requests, videos):
             for cacheServer in endpoints[request.eid].cache_latencies:
                 if(minim > cacheServer.latency):
                     minim =  cacheServer.latency
+                    print("Possible improvement in cache server",cacheServer.cid)
                     mIdx = cacheServer.cid
             caches[mIdx].videos.add(request.video)
     print("The new latency savings are", getTotalLatencySavings(caches, videos, endpoints))
