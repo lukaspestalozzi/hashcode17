@@ -1,5 +1,7 @@
 from collections import namedtuple
 
+Video = namedtuple("Video", ["size"])
+
 Cache = namedtuple("Cache", ["cid", "capacity", "videos"])
 
 CacheLatency = namedtuple("CacheLatency", ["cid", "latency"])
