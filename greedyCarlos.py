@@ -4,7 +4,7 @@ from create_output import *
 def getRemainingCapacity(cache, videos):
     used = 0
     for video in cache.videos:
-        used += videos[video].size
+        used += video.size
     return cache.capacity-used
 
 def getLowestLatency(videoID,endpointID, caches, videos, endpoints):
@@ -23,10 +23,11 @@ def getLatency(videoID,endpointID, caches, videos, endpoints):
     #First we push the latency from the data center
     latencies.append(endpoints[endpointID].latence_to_dc)
     #Now we query the latencies per cache server, we add nothing if the video is not cached
-    for cacheServer in caches:
+    print(endpoints[endpointID].cache_latencies_dict)
+    for cacheServer in endpoints[endpointID].cache_latencies:
         #We check if the video is cached in a server
-        if(videoID in cacheServer.videos):
-            latencies.append(endpoints[endpointID].cache_latencies[cacheServer.cid].latency)
+        if(videoID in caches[cacheServer.cid].videos):
+            latencies.append(endpoints[endpointID].cache_latencies_dict[cacheServer.cid].latency)
     #Worst case it returns latency to the DC
     return min(latencies)
 
@@ -40,20 +41,20 @@ def getTotalLatencySavings(caches, videos, endpoints):
 
 def solveC(caches, endpoints, requests, videos):
     """Comment"""
-    #print(getLatency(0,0, caches, videos, endpoints))
-    print("The latency savings are", getTotalLatencySavings(caches, videos, endpoints))
-    print("Trying to move videos to cache...")
-    print("We have", len(caches),"cache servers")
     #Best would be to sort the request before
-    for request in requests:
+
+    sortedRequests = sorted(requests, key = lambda x: x.amount*endpoints[x.eid].latence_to_dc)
+    reversed(sortedRequests)
+
+    for request in sortedRequests:
         if(getLowestLatency(request.video,request.eid, caches, videos, endpoints) != getLatency(request.video,request.eid, caches, videos, endpoints)):
             mIdx = 0
             minim=endpoints[request.eid].latence_to_dc
             for cacheServer in endpoints[request.eid].cache_latencies:
                 if(minim > cacheServer.latency):
                     minim =  cacheServer.latency
-                    print("Possible improvement in cache server",cacheServer.cid)
+                    #print("Possible improvement in cache server",cacheServer.cid)
                     mIdx = cacheServer.cid
-            caches[mIdx].videos.add(request.video)
-    print("The new latency savings are", getTotalLatencySavings(caches, videos, endpoints))
+            if(getRemainingCapacity(caches[mIdx], videos) > request.video.size):
+                caches[mIdx].videos.add(request.video)
     #create_output(caches)
