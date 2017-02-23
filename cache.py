@@ -33,7 +33,7 @@ for i in range(0, e):
     for j in range(0, k):
         cid, lc = list(map(int, line.split(" ")))
         cachelatencies.append(CacheLatency(cid, lc))
-        cachelatencies_dict = {cid: CacheLatency(cid, lc)}
+        cachelatencies_dict[cid] = CacheLatency(cid, lc)
         line = infile.readline()
 
     # Add endpoint

@@ -23,7 +23,7 @@ def getLatency(videoID,endpointID, caches, videos, endpoints):
     #First we push the latency from the data center
     latencies.append(endpoints[endpointID].latence_to_dc)
     #Now we query the latencies per cache server, we add nothing if the video is not cached
-    print(endpoints[endpointID].cache_latencies_dict)
+    #print(endpoints[endpointID].cache_latencies_dict)
     for cacheServer in endpoints[endpointID].cache_latencies:
         #We check if the video is cached in a server
         if(videoID in caches[cacheServer.cid].videos):
@@ -57,4 +57,5 @@ def solveC(caches, endpoints, requests, videos):
                     mIdx = cacheServer.cid
             if(getRemainingCapacity(caches[mIdx], videos) > request.video.size):
                 caches[mIdx].videos.add(request.video)
-    #create_output(caches)
+    #printgetTotalLatencySavings(caches,videos,endpoints)
+    create_output(caches)
