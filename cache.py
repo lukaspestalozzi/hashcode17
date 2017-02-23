@@ -39,7 +39,6 @@ for i in range(0, e):
     endpoints.append(EndPoint(i, l, cachelatencies, []))
 
 # advance to request descriptions
-line = infile.readline()
 requests = []
 for i in range(0, r):
     rv, re, rn = list(map(int, line.split(" ")))
