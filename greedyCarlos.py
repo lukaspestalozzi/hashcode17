@@ -22,3 +22,6 @@ def getTotalLatencySavings(caches, videos, endpoints):
     return result
 
 def solve(caches, endpoints, requests, videos):
+    """Comment"""
+    #print(getLatency(0,0, caches, videos, endpoints))
+    print("The latency savings are", getTotalLatencySavings(caches, videos, endpoints))

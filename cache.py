@@ -1,6 +1,7 @@
 from sys import stdin
 from objects import *
 from random_lukas import *
+from greedyCarlos import *
 
 '''
     Use 'cat input.in | python thisscript.py' to execute
