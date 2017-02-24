@@ -44,7 +44,11 @@ for i in range(0, e):
 requests = []
 for i in range(0, r):
     rv, re, rn = list(map(int, line.split(" ")))
-    req = Request(videos[rv], rn, re)
+    sav = endpoints[re].latency_savings
+    maxsaving = -10000000
+    if sav:
+        maxsaving = max(sav, key=lambda key: sav[key])
+    req = Request(videos[rv], rn, re, maxsaving)
     endpoints[re].requests.append(req)
     requests.append(req)
     line = infile.readline()

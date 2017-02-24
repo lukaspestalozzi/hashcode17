@@ -8,7 +8,7 @@ def getCapacity(cache):
     return curCapacity
 
 def solveJ(caches, endpoints, requests, videos):
-    for request in reversed(sorted(requests, key=lambda x: x.amount)):
+    for request in reversed(sorted(requests, key=lambda x: x.maxsaving)):
         savings = endpoints[request.eid].latency_savings
         cached = False
         while len(savings.keys()) and not cached:
