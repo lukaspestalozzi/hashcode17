@@ -11,8 +11,6 @@ class Cache(namedtuple("Cache", ["cid", "capacity", "videos"]) ): # videos is an
             s += " "+str(v.vid)
         return s
 
-CacheLatency = namedtuple("CacheLatency", ["cid", "latency"])
-
 Request = namedtuple("Request", ["video", "amount", "eid"])
 
-EndPoint = namedtuple("EndPoint", ["eid", "latence_to_dc", "cache_latencies", "cache_latencies_dict", "requests"])
+EndPoint = namedtuple("EndPoint", ["eid", "latence_to_dc", "latency_savings", "requests"])

@@ -1,6 +1,7 @@
 from sys import stdin
 from objects import *
 from greedyCarlos import *
+from joeysol import *
 
 '''
     Use 'cat input.in | python thisscript.py' to execute
@@ -28,16 +29,16 @@ for i in range(0, e):
     line = infile.readline()
 
     # create cache latencies list
-    cachelatencies = []
-    cachelatencies_dict = {}
+    latencysavings = {}
     for j in range(0, k):
         cid, lc = list(map(int, line.split(" ")))
-        cachelatencies.append(CacheLatency(cid, lc))
-        cachelatencies_dict[cid] = CacheLatency(cid, lc)
+        # if l > lc -> good
+        # biggest value in latencysavings best
+        latencysavings[cid] = l - lc
         line = infile.readline()
 
     # Add endpoint
-    endpoints.append(EndPoint(i, l, cachelatencies, cachelatencies_dict, []))
+    endpoints.append(EndPoint(i, l, latencysavings, []))
 
 # advance to request descriptions
 requests = []
@@ -54,4 +55,4 @@ for i in range(0, c):
     caches.append(Cache(i, x, set()))
 
 
-solveC(caches, endpoints, requests, videos)
+solveJ(caches, endpoints, requests, videos)
