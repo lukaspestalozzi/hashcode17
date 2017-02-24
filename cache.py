@@ -38,7 +38,10 @@ for i in range(0, e):
         line = infile.readline()
 
     # Add endpoint
-    endpoints.append(EndPoint(i, l, latencysavings, []))
+    meanlatency = 0
+    if len(latencysavings) != 0:
+        meanlatency = sum(latencysavings.values(), 0.0) / len(latencysavings)
+    endpoints.append(EndPoint(i, l, latencysavings, meanlatency, []))
 
 # advance to request descriptions
 requests = []
