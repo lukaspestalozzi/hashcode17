@@ -1,6 +1,9 @@
 from sys import stdin
 from objects import *
-from greedyCarlos import *
+import greedyCarlos as greedy
+import random_lukas as randomL
+import sls
+# import lu_sol as lu
 
 '''
     Use 'cat input.in | python thisscript.py' to execute
@@ -54,4 +57,4 @@ for i in range(0, c):
     caches.append(Cache(i, x, set()))
 
 
-solveC(caches, endpoints, requests, videos)
+sls.solve(caches, endpoints, requests, videos)

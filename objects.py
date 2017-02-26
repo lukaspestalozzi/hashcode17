@@ -5,7 +5,7 @@ Video = namedtuple("Video", ["vid", "size"])
 
 class Cache(namedtuple("Cache", ["cid", "capacity", "videos"]) ): # videos is an empty list at the beginning
 
-    def __str__(self):
+    def output_format(self):
         s = str(self.cid)
         for v in self.videos:
             s += " "+str(v.vid)
